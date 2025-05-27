@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { ArrowUp } from 'lucide-react';
 import CircularBorderProgress from '../components/CircularBorderProgress';
@@ -142,7 +141,7 @@ export default function ChatApp() {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-gray-900 text-white">
+    <div className="flex flex-col h-dvh bg-gray-900 text-white">
       {/* Header */}
       <div className="flex justify-between items-center p-4 bg-gray-800">
         <div className="flex items-center space-x-3">
@@ -211,7 +210,7 @@ export default function ChatApp() {
       </div>
 
       {/* Input */}
-      <div className="p-4 bg-gray-800 rounded-t-3xl max-h-[50vh] flex flex-col items-center justify-center">
+      <div className="p-4 bg-gray-800 rounded-t-3xl max-h-[50dvh] flex flex-col items-center justify-center">
         {/* Grupo pai interno - Input e botão de envio */}
         {!timerFinished && (
           <div className={`flex bg-gray-700 rounded-3xl p-2 focus-within:ring-2 focus-within:ring-blue-500 gap-3 w-full max-w-none ${
@@ -227,7 +226,7 @@ export default function ChatApp() {
               style={{
                 height: '40px',
                 minHeight: '40px',
-                maxHeight: 'calc(50vh - 4rem)' // 50vh minus padding
+                maxHeight: 'calc(50dvh - 4rem)' // 50vh minus padding
               }}
               onInput={handleTextareaInput}
             />

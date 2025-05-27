@@ -167,9 +167,9 @@ const WinnerCard = ({ winner, amount, date, argument }) => {
 
 const FeatureCard = ({ icon: Icon, title, description }) => {
   return (
-    <div className="bg-gray-800 rounded-xl p-4 sm:p-6 border border-gray-700 hover:border-blue-500/50 transition-all duration-300 hover:transform hover:scale-105 group">
+    <div className="bg-gray-800 rounded-xl p-4 sm:p-6 border border-gray-700 hover:border-green-400/50 transition-all duration-300 hover:transform hover:scale-105 group">
       <div className="flex items-start space-x-4 mb-4">
-        <div className="p-2 sm:p-3 bg-blue-600 rounded-lg group-hover:bg-blue-500 transition-colors flex-shrink-0">
+        <div className="p-2 sm:p-3 bg-gradient-to-r from-blue-600 to-green-500 rounded-lg group-hover:from-blue-500 group-hover:to-green-400 transition-all flex-shrink-0">
           <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" aria-hidden="true" />
         </div>
         <div className="min-w-0">
@@ -248,7 +248,7 @@ export default function LandingPage() {
       <main id="main-content" className="container mx-auto px-4 pt-8 sm:pt-12 lg:pt-16 pb-12">
         {/* Header */}
         <header className="text-center mb-6 sm:mb-8 lg:mb-10">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-6 sm:mb-8 lg:mb-10 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-6 sm:mb-8 lg:mb-10 bg-gradient-to-r from-blue-500 to-green-400 bg-clip-text text-transparent leading-tight">
             CONVENÇA A IA E LEVE TODO O PRÊMIO
           </h1>
         </header>
@@ -264,7 +264,7 @@ export default function LandingPage() {
         <section className="text-center mb-8 sm:mb-10 lg:mb-12 max-w-4xl mx-auto px-4">
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 leading-relaxed">
             Elabore argumentos consistentes e convença a inteligência artificial 
-            a escolher você para receber o <span className="text-yellow-400 font-bold">prêmio acumulado</span>
+            a escolher você para receber o <span className="text-green-400 font-bold">prêmio acumulado</span>
           </p>
         </section>
 
@@ -272,7 +272,7 @@ export default function LandingPage() {
         <section className="text-center mb-12 sm:mb-16 lg:mb-20">
           <button 
             onClick={handleStartChallenge}
-            className="group relative inline-flex items-center space-x-2 sm:space-x-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 px-6 sm:px-8 lg:px-12 py-4 sm:py-5 lg:py-6 rounded-xl sm:rounded-2xl text-base sm:text-lg lg:text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-blue-500/25 focus:outline-none focus:ring-4 focus:ring-blue-500/50"
+            className="group relative inline-flex items-center space-x-2 sm:space-x-3 bg-gradient-to-r from-blue-600 to-green-500 hover:from-blue-700 hover:to-green-600 px-6 sm:px-8 lg:px-12 py-4 sm:py-5 lg:py-6 rounded-xl sm:rounded-2xl text-base sm:text-lg lg:text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-blue-500/25 focus:outline-none focus:ring-4 focus:ring-blue-500/50"
             aria-describedby="cta-description"
           >
             <span>COMEÇAR AGORA</span>
@@ -285,7 +285,7 @@ export default function LandingPage() {
 
         {/* How it Works */}
         <section className="mb-12 sm:mb-16 lg:mb-20" aria-labelledby="how-it-works">
-          <h2 id="how-it-works" className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+          <h2 id="how-it-works" className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 bg-gradient-to-r from-blue-500 to-green-400 bg-clip-text text-transparent">
             Como Funciona
           </h2>
 
@@ -304,17 +304,17 @@ export default function LandingPage() {
         {/* Explanation Section */}
         <section className="mb-12 sm:mb-16 lg:mb-20 max-w-4xl mx-auto px-4" aria-labelledby="challenge-section">
           <div className="bg-gradient-to-r from-gray-800 to-gray-700 rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-gray-600">
-            <h2 id="challenge-section" className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-center text-blue-400">
+            <h2 id="challenge-section" className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-center bg-gradient-to-r from-blue-500 to-green-400 bg-clip-text text-transparent">
               O Desafio
             </h2>
             <p className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed text-center mb-4 sm:mb-6">
               Nossa IA analisa milhares de fatores em seu argumento: coerência, emoção, originalidade, 
-              necessidade real e impacto social. Você precisa ser <span className="text-yellow-400 font-semibold">genuíno</span>, 
+              necessidade real e impacto social. Você precisa ser <span className="text-green-400 font-semibold">genuíno</span>, 
               <span className="text-blue-400 font-semibold"> convincente</span> e 
-              <span className="text-green-400 font-semibold"> único</span>.
+              <span className="text-green-300 font-semibold"> único</span>.
             </p>
             <p className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed text-center">
-              <span className="text-red-400 font-semibold">Não tente enganar</span> - a IA detecta inconsistências. 
+              <span className="text-blue-300 font-semibold">Não tente enganar</span> - a IA detecta inconsistências. 
               Seja honesto sobre por que merece o prêmio e como isso mudaria sua vida.
             </p>
           </div>
@@ -322,7 +322,7 @@ export default function LandingPage() {
 
         {/* Previous Winners */}
         <section className="mb-8 sm:mb-12 lg:mb-16" aria-labelledby="winners-section">
-          <h2 id="winners-section" className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
+          <h2 id="winners-section" className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 bg-gradient-to-r from-blue-500 to-green-400 bg-clip-text text-transparent">
             Ganhadores Anteriores
           </h2>
 
@@ -350,7 +350,7 @@ export default function LandingPage() {
           </p>
           <button 
             onClick={handleStartChallenge}
-            className="group relative inline-flex items-center space-x-2 sm:space-x-3 bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 px-6 sm:px-8 lg:px-12 py-4 sm:py-5 lg:py-6 rounded-xl sm:rounded-2xl text-base sm:text-lg lg:text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-green-500/25 focus:outline-none focus:ring-4 focus:ring-green-500/50"
+            className="group relative inline-flex items-center space-x-2 sm:space-x-3 bg-gradient-to-r from-blue-600 to-green-500 hover:from-blue-700 hover:to-green-600 px-6 sm:px-8 lg:px-12 py-4 sm:py-5 lg:py-6 rounded-xl sm:rounded-2xl text-base sm:text-lg lg:text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-blue-500/25 focus:outline-none focus:ring-4 focus:ring-blue-500/50"
           >
             <span>ACEITAR O DESAFIO</span>
             <Zap className="w-5 h-5 sm:w-6 sm:h-6 group-hover:rotate-12 transition-transform" aria-hidden="true" />

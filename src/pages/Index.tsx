@@ -248,7 +248,7 @@ export default function LandingPage() {
       <main id="main-content" className="container mx-auto px-4 pt-8 sm:pt-12 lg:pt-16 pb-12">
         {/* Header */}
         <header className="text-center mb-6 sm:mb-8 lg:mb-10">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 sm:mb-8 lg:mb-10 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-6 sm:mb-8 lg:mb-10 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent leading-tight">
             CONVENÇA A IA E LEVE TODO O PRÊMIO
           </h1>
         </header>

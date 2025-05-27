@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { ArrowUp } from 'lucide-react';
 import CircularBorderProgress from '../components/CircularBorderProgress';
@@ -143,7 +142,10 @@ export default function ChatApp() {
   };
 
   const handleAvatarClick = () => {
-    setIsMenuOpen(!isMenuOpen);
+    // No mobile, toggle o menu. No desktop, o menu fica sempre visível
+    if (window.innerWidth < 768) {
+      setIsMenuOpen(!isMenuOpen);
+    }
   };
 
   const handleMenuClose = () => {
@@ -158,40 +160,43 @@ export default function ChatApp() {
     }
   };
 
-  const handleNewChat = () => {
-    // Lógica para criar novo chat
-    console.log('Novo chat criado');
-    if (window.innerWidth < 768) {
-      setIsMenuOpen(false);
-    }
-  };
-
   return (
     <div className="flex h-dvh bg-gray-900 text-white overflow-hidden">
-      {/* Menu do histórico */}
-      <ChatHistoryMenu
-        isOpen={isMenuOpen}
-        onClose={handleMenuClose}
-        activeChat={activeChat}
-        onChatSelect={handleChatSelect}
-        onNewChat={handleNewChat}
-      />
+      {/* Menu do histórico - sempre visível no desktop */}
+      <div className="hidden md:block">
+        <ChatHistoryMenu
+          isOpen={true}
+          onClose={() => {}}
+          activeChat={activeChat}
+          onChatSelect={handleChatSelect}
+          onNewChat={() => {}}
+        />
+      </div>
+
+      {/* Menu do histórico - modal no mobile */}
+      <div className="md:hidden">
+        <ChatHistoryMenu
+          isOpen={isMenuOpen}
+          onClose={handleMenuClose}
+          activeChat={activeChat}
+          onChatSelect={handleChatSelect}
+          onNewChat={() => {}}
+        />
+      </div>
 
       {/* Área principal do chat */}
-      <div className={`flex flex-col flex-1 min-w-0 transition-all duration-300 ${
-        isMenuOpen ? 'md:ml-0' : 'md:ml-0'
-      }`}>
+      <div className="flex flex-col flex-1 min-w-0">
         {/* Header */}
         <div className="flex justify-between items-center p-4 bg-gray-800 flex-shrink-0">
           <div className="flex items-center space-x-3">
             <div 
               onClick={handleAvatarClick}
-              className="cursor-pointer"
+              className="cursor-pointer md:cursor-default"
             >
               {showProgress ? (
                 <CircularProgress percentage={progressPercentage} />
               ) : (
-                <div className="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gray-600 transition-colors">
+                <div className="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gray-600 transition-colors md:hover:bg-gray-700">
                   <span className="text-sm font-medium">img</span>
                   <span className="text-xs text-gray-400 ml-1">AI</span>
                 </div>

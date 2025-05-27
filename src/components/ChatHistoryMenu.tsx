@@ -2,6 +2,7 @@
 import React from 'react';
 import { X } from 'lucide-react';
 import { Avatar, AvatarImage, AvatarFallback } from './ui/avatar';
+import { useNavigate } from 'react-router-dom';
 import ChatHistoryItem from './ChatHistoryItem';
 
 interface ChatHistory {
@@ -52,9 +53,10 @@ export default function ChatHistoryMenu({
   activeChat, 
   onChatSelect 
 }: ChatHistoryMenuProps) {
+  const navigate = useNavigate();
+
   const handleAccountClick = () => {
-    // Navegar para página de conta do usuário
-    console.log('Navegando para conta do usuário...');
+    navigate('/account');
   };
 
   return (

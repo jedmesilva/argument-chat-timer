@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Trophy, Zap, Brain, Users, ArrowRight, Star, Crown } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const PrizCard = ({ amount, isMain = false }) => {
   const [displayAmount, setDisplayAmount] = useState(0);
@@ -119,6 +120,7 @@ const FeatureCard = ({ icon: Icon, title, description }) => {
 };
 
 export default function LandingPage() {
+  const navigate = useNavigate();
   const currentPrize = 15750;
   
   const previousWinners = [
@@ -190,7 +192,10 @@ export default function LandingPage() {
 
         {/* CTA Button */}
         <div className="text-center mb-20">
-          <button className="group relative inline-flex items-center space-x-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 px-12 py-6 rounded-2xl text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-blue-500/25">
+          <button 
+            onClick={() => navigate('/chat')}
+            className="group relative inline-flex items-center space-x-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 px-12 py-6 rounded-2xl text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-blue-500/25"
+          >
             <span>COMEÇAR AGORA</span>
             <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
           </button>
@@ -264,7 +269,10 @@ export default function LandingPage() {
             Milhares tentaram, poucos conseguiram. Será que você consegue elaborar 
             o argumento que vai convencer nossa IA?
           </p>
-          <button className="group relative inline-flex items-center space-x-3 bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 px-12 py-6 rounded-2xl text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-green-500/25">
+          <button 
+            onClick={() => navigate('/chat')}
+            className="group relative inline-flex items-center space-x-3 bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 px-12 py-6 rounded-2xl text-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-green-500/25"
+          >
             <span>ACEITAR O DESAFIO</span>
             <Zap className="w-6 h-6 group-hover:rotate-12 transition-transform" />
           </button>

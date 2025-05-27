@@ -66,8 +66,8 @@ export default function ChatHistoryMenu({
       <div className={`
         fixed md:relative top-0 left-0 h-full w-80 bg-gray-800 border-r border-gray-600 z-50
         transform transition-transform duration-300 ease-in-out
-        ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
-        ${isOpen ? 'md:block' : 'md:block'}
+        ${isOpen ? 'translate-x-0' : '-translate-x-full'}
+        md:translate-x-0 ${isOpen ? 'md:block' : 'md:hidden'}
       `}>
         <div className="flex flex-col h-full">
           {/* Header do menu */}

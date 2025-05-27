@@ -143,7 +143,7 @@ export default function ChatApp() {
   };
 
   const handleAvatarClick = () => {
-    setIsMenuOpen(true);
+    setIsMenuOpen(!isMenuOpen);
   };
 
   const handleMenuClose = () => {
@@ -167,7 +167,7 @@ export default function ChatApp() {
   };
 
   return (
-    <div className="flex h-dvh bg-gray-900 text-white">
+    <div className="flex h-dvh bg-gray-900 text-white overflow-hidden">
       {/* Menu do histórico */}
       <ChatHistoryMenu
         isOpen={isMenuOpen}
@@ -178,11 +178,11 @@ export default function ChatApp() {
       />
 
       {/* Área principal do chat */}
-      <div className={`flex flex-col flex-1 transition-all duration-300 ${
+      <div className={`flex flex-col flex-1 min-w-0 transition-all duration-300 ${
         isMenuOpen ? 'md:ml-0' : 'md:ml-0'
       }`}>
         {/* Header */}
-        <div className="flex justify-between items-center p-4 bg-gray-800">
+        <div className="flex justify-between items-center p-4 bg-gray-800 flex-shrink-0">
           <div className="flex items-center space-x-3">
             <div 
               onClick={handleAvatarClick}
@@ -215,7 +215,7 @@ export default function ChatApp() {
         </div>
 
         {/* Seção de Anúncio Patrocinado */}
-        <div className="bg-gray-750 border-b border-gray-600 px-4 py-2 w-full">
+        <div className="bg-gray-750 border-b border-gray-600 px-4 py-2 w-full flex-shrink-0">
           <div className="flex items-center justify-between max-w-full">
             <div className="flex items-center space-x-3 flex-1 min-w-0 mr-3">
               <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-md flex items-center justify-center flex-shrink-0">
@@ -235,7 +235,7 @@ export default function ChatApp() {
         </div>
 
         {/* Messages */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+        <div className="flex-1 overflow-y-auto p-4 space-y-4 min-h-0">
           {messages.map((msg) => (
             <div key={msg.id} className={`flex ${msg.sender === 'me' ? 'justify-end' : 'justify-start'}`}>
               <div className={`max-w-xs lg:max-w-md px-4 py-3 rounded-2xl ${
@@ -252,7 +252,7 @@ export default function ChatApp() {
         </div>
 
         {/* Input */}
-        <div className="p-4 bg-gray-800 rounded-t-3xl max-h-[50dvh] flex flex-col items-center justify-center">
+        <div className="p-4 bg-gray-800 rounded-t-3xl max-h-[50dvh] flex flex-col items-center justify-center flex-shrink-0">
           {!timerFinished && (
             <div className={`flex bg-gray-700 rounded-3xl p-2 focus-within:ring-2 focus-within:ring-blue-500 gap-3 w-full max-w-none ${
               isTextareaExpanded ? 'items-end' : 'items-center'

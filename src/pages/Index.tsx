@@ -247,21 +247,25 @@ export default function LandingPage() {
       {/* Hero Section */}
       <main id="main-content" className="container mx-auto px-4 pt-8 sm:pt-12 lg:pt-16 pb-12">
         {/* Header */}
-        <header className="text-center mb-8 sm:mb-12 lg:mb-16">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-4 sm:mb-6 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent leading-tight">
-            CONVENÇA A IA
+        <header className="text-center mb-6 sm:mb-8 lg:mb-10">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 sm:mb-8 lg:mb-10 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent leading-tight">
+            CONVENÇA A IA E LEVE TODO O PRÊMIO
           </h1>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed px-4">
-            Uma plataforma revolucionária onde você precisa convencer uma Inteligência Artificial 
-            a escolher você para receber o <span className="text-yellow-400 font-bold">prêmio acumulado</span>
-          </p>
         </header>
 
         {/* Main Prize Card */}
-        <section className="mb-8 sm:mb-12 lg:mb-16 flex justify-center" aria-labelledby="prize-section">
+        <section className="mb-6 sm:mb-8 lg:mb-10 flex justify-center" aria-labelledby="prize-section">
           <div className="w-full max-w-lg px-4">
             <PrizCard amount={currentPrize} isMain={true} />
           </div>
+        </section>
+
+        {/* Description */}
+        <section className="text-center mb-8 sm:mb-10 lg:mb-12 max-w-4xl mx-auto px-4">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 leading-relaxed">
+            Elabore argumentos consistentes e convença a inteligência artificial 
+            a escolher você para receber o <span className="text-yellow-400 font-bold">prêmio acumulado</span>
+          </p>
         </section>
 
         {/* CTA Button */}

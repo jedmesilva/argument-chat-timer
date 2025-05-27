@@ -18,6 +18,10 @@ interface ChatHistoryMenuProps {
   activeChat: string;
   onChatSelect: (chatId: string) => void;
   onNewChat: () => void;
+  isWinnerChat?: boolean;
+  winnerName?: string;
+  onGoBack?: () => void;
+  onGoToUserChat?: () => void;
 }
 
 const mockHistory: ChatHistory[] = [
@@ -51,7 +55,11 @@ export default function ChatHistoryMenu({
   isOpen, 
   onClose, 
   activeChat, 
-  onChatSelect 
+  onChatSelect,
+  isWinnerChat = false,
+  winnerName,
+  onGoBack,
+  onGoToUserChat
 }: ChatHistoryMenuProps) {
   const navigate = useNavigate();
 
@@ -106,18 +114,60 @@ export default function ChatHistoryMenu({
 
           {/* Lista de histórico */}
           <div className="flex-1 overflow-y-auto p-4 space-y-3">
-            <h2 className="text-lg font-semibold text-white mb-4">Histórico de Chats</h2>
-            {mockHistory.map((chat) => (
-              <ChatHistoryItem
-                key={chat.id}
-                id={chat.id}
-                title={chat.title}
-                lastMessage={chat.lastMessage}
-                timestamp={chat.timestamp}
-                isActive={activeChat === chat.id}
-                onClick={() => onChatSelect(chat.id)}
-              />
-            ))}
+            {isWinnerChat ? (
+              <>
+                <h2 className="text-lg font-semibold text-white mb-4">Chat do Ganhador</h2>
+                <div className="bg-yellow-600/20 border border-yellow-500 rounded-lg p-3">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-8 h-8 bg-yellow-600 rounded-full flex items-center justify-center flex-shrink-0">
+                      <span className="text-xs font-bold text-white">👑</span>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-sm font-medium text-white truncate">{winnerName}</h3>
+                      <p className="text-xs text-yellow-400 truncate mt-1">Ganhador do prêmio</p>
+                      <div className="flex items-center mt-2 text-xs text-yellow-500">
+                        <span>Chat vencedor</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Botões de navegação */}
+                <div className="space-y-2 mt-6">
+                  {onGoBack && (
+                    <button
+                      onClick={onGoBack}
+                      className="w-full bg-gray-700 hover:bg-gray-600 text-white py-2 px-4 rounded-lg transition-colors text-sm"
+                    >
+                      ← Voltar
+                    </button>
+                  )}
+                  {onGoToUserChat && (
+                    <button
+                      onClick={onGoToUserChat}
+                      className="w-full bg-blue-600 hover:bg-blue-500 text-white py-2 px-4 rounded-lg transition-colors text-sm"
+                    >
+                      Ver meu chat
+                    </button>
+                  )}
+                </div>
+              </>
+            ) : (
+              <>
+                <h2 className="text-lg font-semibold text-white mb-4">Histórico de Chats</h2>
+                {mockHistory.map((chat) => (
+                  <ChatHistoryItem
+                    key={chat.id}
+                    id={chat.id}
+                    title={chat.title}
+                    lastMessage={chat.lastMessage}
+                    timestamp={chat.timestamp}
+                    isActive={activeChat === chat.id}
+                    onClick={() => onChatSelect(chat.id)}
+                  />
+                ))}
+              </>
+            )}
           </div>
         </div>
       </div>

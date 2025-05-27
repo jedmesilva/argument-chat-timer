@@ -1,11 +1,10 @@
-
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Trophy, Zap, Brain, Users, ArrowRight, Star, Crown, ChevronDown } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const PrizCard = ({ amount, isMain = false }) => {
   const [displayAmount, setDisplayAmount] = useState(0);
-  
+
   const animateCounter = useCallback(() => {
     if (!isMain) {
       setDisplayAmount(amount);
@@ -17,7 +16,7 @@ const PrizCard = ({ amount, isMain = false }) => {
     const increment = amount / steps;
     let current = 0;
     let animationFrame;
-    
+
     const animate = () => {
       current += increment;
       if (current >= amount) {
@@ -27,21 +26,21 @@ const PrizCard = ({ amount, isMain = false }) => {
         animationFrame = requestAnimationFrame(animate);
       }
     };
-    
+
     animationFrame = requestAnimationFrame(animate);
-    
+
     return () => {
       if (animationFrame) {
         cancelAnimationFrame(animationFrame);
       }
     };
   }, [amount, isMain]);
-  
+
   useEffect(() => {
     const cleanup = animateCounter();
     return cleanup;
   }, [animateCounter]);
-  
+
   const formatCurrency = useMemo(() => {
     return (value) => `R$ ${value.toLocaleString('pt-BR')}`;
   }, []);
@@ -54,7 +53,7 @@ const PrizCard = ({ amount, isMain = false }) => {
           className="absolute -inset-1 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 rounded-3xl blur opacity-30 group-hover:opacity-50 transition-opacity duration-500"
           aria-hidden="true"
         />
-        
+
         <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-4 sm:p-6 lg:p-8 border border-yellow-500/20 shadow-2xl transform hover:scale-105 transition-all duration-300">
           {/* Crown icon */}
           <div className="flex justify-center mb-4">
@@ -62,7 +61,7 @@ const PrizCard = ({ amount, isMain = false }) => {
               <Crown className="w-6 h-6 sm:w-8 sm:h-8 text-white" aria-hidden="true" />
             </div>
           </div>
-          
+
           <div className="text-center">
             <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-yellow-400 mb-2">
               PRÊMIO ACUMULADO
@@ -78,7 +77,7 @@ const PrizCard = ({ amount, isMain = false }) => {
               Convença a IA e leve tudo!
             </p>
           </div>
-          
+
           {/* Sparkle effects */}
           <div className="absolute top-2 sm:top-4 right-2 sm:right-4" aria-hidden="true">
             <Star className="w-4 h-4 sm:w-6 sm:h-6 text-yellow-400 animate-pulse" />
@@ -112,56 +111,57 @@ const PrizCard = ({ amount, isMain = false }) => {
 
 const WinnerCard = ({ winner, amount, date, argument }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const navigate = useNavigate();
+
+  const formatCurrency = useMemo(() => {
+    return (value) => `R$ ${value.toLocaleString('pt-BR')}`;
+  }, []);
+
+  const handleCardClick = useCallback(() => {
+    navigate('/chat');
+  }, [navigate]);
 
   return (
-    <article className="bg-gray-800 rounded-xl p-4 sm:p-6 border border-gray-700 hover:border-gray-600 transition-all duration-300 hover:shadow-lg">
-      <div className="flex items-start justify-between mb-4">
-        <div className="flex items-center space-x-3">
-          <div 
-            className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0"
-            aria-hidden="true"
-          >
-            <span className="text-white font-bold text-sm sm:text-lg">
-              {winner.charAt(0).toUpperCase()}
-            </span>
+    <div 
+      onClick={handleCardClick}
+      className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl p-4 sm:p-6 hover:border-gray-600 transition-all duration-300 hover:shadow-lg cursor-pointer hover:bg-gray-800/70"
+    >
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div className="flex-1">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-3">
+            <h3 className="text-lg sm:text-xl font-bold text-white">{winner}</h3>
+            <div className="flex items-center gap-2">
+              <span className="text-2xl sm:text-3xl font-black text-yellow-400">
+                {formatCurrency(amount)}
+              </span>
+              <Trophy className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400" />
+            </div>
           </div>
-          <div className="min-w-0">
-            <h3 className="text-white font-semibold text-sm sm:text-lg truncate">
-              {winner}
-            </h3>
-            <p className="text-gray-400 text-xs sm:text-sm">{date}</p>
+          <p className="text-xs sm:text-sm text-gray-400 mb-3">{date}</p>
+
+          <div className="relative">
+            <p className={`text-sm sm:text-base text-gray-300 leading-relaxed transition-all duration-300 ${
+              isExpanded ? '' : 'line-clamp-2'
+            }`}>
+              "{argument}"
+            </p>
+
+            {argument.length > 100 && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsExpanded(!isExpanded);
+                }}
+                className="mt-2 text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors flex items-center gap-1"
+              >
+                {isExpanded ? 'Ver menos' : 'Ver mais'}
+                <ChevronDown className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+              </button>
+            )}
           </div>
-        </div>
-        <div className="text-right flex-shrink-0">
-          <p className="text-green-400 font-bold text-sm sm:text-xl">
-            R$ {amount.toLocaleString('pt-BR')}
-          </p>
-          <p className="text-gray-400 text-xs sm:text-sm">Ganhou</p>
         </div>
       </div>
-      
-      <div className="bg-gray-900 p-3 sm:p-4 rounded-lg">
-        <div className={`text-gray-300 text-xs sm:text-sm italic transition-all duration-300 ${
-          isExpanded ? '' : 'line-clamp-3'
-        }`}>
-          "{argument}"
-        </div>
-        
-        {argument.length > 150 && (
-          <button
-            onClick={() => setIsExpanded(!isExpanded)}
-            className="mt-2 text-blue-400 hover:text-blue-300 text-xs flex items-center gap-1 transition-colors"
-            aria-expanded={isExpanded}
-          >
-            {isExpanded ? 'Ver menos' : 'Ver mais'}
-            <ChevronDown 
-              className={`w-3 h-3 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
-              aria-hidden="true"
-            />
-          </button>
-        )}
-      </div>
-    </article>
+    </div>
   );
 };
 
@@ -184,7 +184,7 @@ const FeatureCard = ({ icon: Icon, title, description }) => {
 export default function LandingPage() {
   const navigate = useNavigate();
   const currentPrize = 15750;
-  
+
   const previousWinners = useMemo(() => [
     {
       winner: "Carlos Silva",
@@ -284,7 +284,7 @@ export default function LandingPage() {
           <h2 id="how-it-works" className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
             Como Funciona
           </h2>
-          
+
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto">
             {features.map((feature, index) => (
               <FeatureCard 
@@ -321,7 +321,7 @@ export default function LandingPage() {
           <h2 id="winners-section" className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
             Ganhadores Anteriores
           </h2>
-          
+
           <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto">
             {previousWinners.map((winner, index) => (
               <WinnerCard 
